@@ -640,6 +640,7 @@
     <!--===========================================================================================================================-->
     <xsl:template match="result[@module = 'content' and page[@type-id = 155]]" mode="article">
         <xsl:variable name="title" select=".//property[@name = 'h1']/value"/>
+        <xsl:variable name="kolichestvo_komnat" select=".//property[@name = 'kolichestvo_komnat']/value/item/@id"/>
         <div class="wrapper">
             <div class="breadcrumbs">
                 <xsl:choose>
@@ -660,6 +661,7 @@
                 <!--span>Быстрый подбор недвижимости: </span-->
                 <xsl:apply-templates select="document(concat('udata://catalog/getCategoryList/notemplate/',550,'/0/1/0'))/udata/items" mode="subcatalog3">
                     <xsl:with-param name="uri" select="page/@link"/>
+                    <xsl:with-param name="kolichestvo_komnat" select="$kolichestvo_komnat"/>
                 </xsl:apply-templates>
 
                 <xsl:if test="string-length($raion) != 0">
@@ -810,18 +812,22 @@
 
     <xsl:template match="items" mode="subcatalog3">
         <xsl:param name="uri"/>
+        <xsl:param name="kolichestvo_komnat"/>
         <div class="block_step_link">
             <!--a class="step_link" href="{$uri}">Все</a-->
             <a class="step_link" href="/krasnodar/obekty/kvartiry/">Все</a>
             <xsl:apply-templates select="item" mode="subcatalog3">
                 <xsl:with-param name="uri" select="$uri"/>
+                <xsl:with-param name="kolichestvo_komnat" select="$kolichestvo_komnat"/>
             </xsl:apply-templates>
         </div>
     </xsl:template>
 
     <xsl:template match="item" mode="subcatalog3">
         <xsl:param name="uri"/>
+        <xsl:param name="kolichestvo_komnat"/>
         <xsl:variable name="pr" select="document(concat('upage://',@id))/udata/page/@alt-name"/>
+        <xsl:variable name="romms_count" select="document(concat('usel://rooms/', $kolichestvo_komnat,'/',$pr))/udata/total"/>
 
         <xsl:choose>
             <xsl:when test="$pr = $raion">
@@ -830,7 +836,7 @@
                 </a>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:if test="string-length($raion) = 0">
+                <xsl:if test="string-length($raion) = 0 and $romms_count != 0">
                     <a class="step_link" href="{$uri}?raion={$pr}">
                         <xsl:value-of select="."/>
                     </a>
@@ -865,6 +871,9 @@
 
     <xsl:template match="item" mode="subcatalog_komn2">
         <xsl:param name="komn"/>
+        <xsl:variable name="id_room" select="document(concat('upage://', @id,'.kolichestvo_komnat'))/udata/property/value/item/@id"/>
+        <xsl:variable name="romms_count" select="document(concat('usel://rooms/', $id_room,'/',$raion))/udata/total"/>
+        
         <xsl:choose>
             <xsl:when test="string-length($raion) = 0">
                 
@@ -875,9 +884,11 @@
                         </a>
                     </xsl:when>
                     <xsl:otherwise>
-                        <a class="step_link" href="{@link}">
-                            <xsl:value-of select="."/>
-                        </a>
+                        <xsl:if test="$komn = false() and $romms_count != 0">
+                            <a class="step_link" href="{@link}">
+                                <xsl:value-of select="."/>
+                            </a>
+                        </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
             
@@ -892,7 +903,7 @@
                         </a>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:if test="$komn = false()">
+                        <xsl:if test="$komn = false() and $romms_count != 0">
                             <a class="step_link" href="{@link}?raion={$raion}">
                                 <xsl:value-of select="."/>
                             </a>
