@@ -658,7 +658,7 @@
             </div>
             <div class="headline">
                 <!--span>Быстрый подбор недвижимости: </span-->
-                <xsl:apply-templates select="document(concat('udata://catalog/getCategoryList/notemplate/',550,'/0/0/0'))/udata/items" mode="subcatalog3">
+                <xsl:apply-templates select="document(concat('udata://catalog/getCategoryList/notemplate/',550,'/0/1/0'))/udata/items" mode="subcatalog3">
                     <xsl:with-param name="uri" select="page/@link"/>
                 </xsl:apply-templates>
 
