@@ -875,8 +875,8 @@ display:block !important;
 
 .obj_distinct {
   color: #777777;
-  font-family: 'officinaserifcbook';
-  font-size: 1.2em;
+  /*font-family: 'officinaserifcbook';
+  font-size: 1.2em;*/
   font-weight: bold;
   margin: 0 0 5px;
 }

@@ -226,7 +226,7 @@
 }
 .block_step_link:nth-last-of-type(2) {
   border-bottom: 1px solid #ddd;
-  padding: 0 0 5px 0;
+  padding: 0 0 15px;
 }
 .step_link {
   border-bottom: 1px dotted #777;
@@ -241,4 +241,7 @@
 .step_link.checked {
   color: #eb6e35;
   border-bottom: 1px solid #eb6e35;
+}
+.obj_distinct > a {
+  color: #777;
 }
