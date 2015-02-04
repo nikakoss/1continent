@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selection>
+    <target expected-result="pages">
+        <!--type module="catalog" method="object" /-->
+        <!--type id="120"/>
+        <type id="121"/>
+        <type id="122"/-->
+        <type id="119"/>
+        <category depth="1">/krasnodar/doma/</category>
+        <category depth="1">/krasnodar/kommercheskaya_nedvizhimost/</category>
+        <category depth="1">/krasnodar/novostrojki/</category>
+    </target>
+    <property name="specialnoe_prezhdlozhenie" value="1"/>
+    <sort>rand()</sort>
+    <limit page="0">{limit}</limit>
+</selection>

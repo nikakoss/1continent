@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selection>
+    <target expected-result="pages">
+        <!--type module="catalog" method="object" /-->
+        <type id="120"/>
+        <type id="121"/>
+        <type id="122"/>
+        <category depth="2">0</category>
+    </target>
+    <property name="specialnoe_prezhdlozhenie" value="1"/>
+    <sort>rand()</sort>
+    <limit page="0">{limit}</limit>
+</selection>

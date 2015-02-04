@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selection>
+    <target expected-result="pages">
+        <type id="128"/>
+        <category depth="4">{2}</category>
+    </target>
+    <property name="kolichestvo_komnat">
+        <object>{1}</object>
+    </property>
+    <limit page="{page}">6</limit>
+    <sort>rand()</sort>
+</selection>

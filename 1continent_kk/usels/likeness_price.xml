@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- likeness_high_price -->
+<selection>
+    <target expected-result="pages">
+        <type id="{1}"/>
+    </target>
+    
+    <!--extended>
+        <properties>h1,cena</properties>
+    </extended-->
+    
+    <property name="cena">
+        <min-value>{2}</min-value>
+        <max-value>{3}</max-value>
+    </property>
+    
+    <limit page="0">10</limit>
+</selection>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Список квартир -->
+<selection>
+    <target expected-result="pages">
+        <type id="128"/>
+        <!--category depth="2">/novostrojki/</category-->
+        <!--category depth="4">/krasnodar/obekty/novostrojki/rajon_1/</category-->
+        <category depth="4">/krasnodar/obekty/novostrojki/{2}</category>
+    </target>
+    <property name="kolichestvo_komnat">
+        <object>{1}</object>
+    </property>
+    <limit page="{page}">10</limit>
+</selection>

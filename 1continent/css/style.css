@@ -1,0 +1,58 @@
+.content.home{
+    background:url("../img/banner_bg.jpg") no-repeat scroll 49% -40px rgba(0, 0, 0, 0);
+}
+.header_menu{
+    font-family:'officinaserifcbook';
+    font-size:1.5em;
+   /* margin:200px 0 0; */
+    position:relative;
+    text-transform:uppercase;
+}
+
+.header_menu a{
+    border:2px solid rgba(0, 0, 0, 0);
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    color:#000000;
+    cursor:pointer;
+    display:block;
+    padding:4px 0;
+    text-decoration:none;
+}
+.header_menu a:hover{
+    border:2px solid #EB6E35;
+}
+.header_menu span{
+    font-weight:bold;
+    padding:0 9px;
+    vertical-align:middle;
+}
+
+.header_menu ul li ul {
+  background: none repeat scroll 0 0 #fff;
+  box-shadow: 0 1px 2px #555;
+  font-size: 0.9em;
+  height: auto;
+  left: 1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  visibility: hidden;
+  z-index: 3;
+  width: 270%;
+}
+
+#params td {
+    padding: 10px 0 0 10px;
+}
+
+#kolichestvo_komnat > label, #etazhnost > label {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.s_obj > img {
+  display: block;
+  margin: 15px auto;
+}

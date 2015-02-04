@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- likeness_high_price -->
+<selection>
+    <target expected-result="pages">
+        <type id="{1}"/>
+    </target>
+    
+    <extended>
+        <properties>h1,cena</properties>
+    </extended>
+    
+    <property name="cena">
+        <min-value>{3}</min-value>
+        <max-value>{2}</max-value>
+    </property>
+    
+    <!--property name="target" value="{4}"/-->
+ 
+    <!-- <sort order="ascending">rajon</sort> -->
+    
+    <!-- <sort order="descending">id</sort>  -->
+    <limit page="0">4</limit>
+</selection>
