@@ -387,8 +387,8 @@
     <!--===========================================================================================================================-->
     <!--===========================================================================================================================-->
     <!-- Вывод Как Бы БЛОГ BEGIN -->
-
-    <xsl:template match="result[@module='catalog' and @method='category'][parents/page[@alt-name = 'blog']]" mode="catalog">
+    
+    <xsl:template match="result[@module='catalog' and @method='category']/page[@alt-name = 'blog']" mode="catalog">
         <xsl:variable name="id_cat" select="@id"/>
         <div class="wrapper">
             <div class="headline">
@@ -418,12 +418,15 @@
             </div>
 
             <xsl:call-template name="sidebar"/>
+
+
             <!--script type="text/javascript" src="{$template-resources}js/load_objects.js"/-->
 
         </div>
+
     </xsl:template>
 
-    <xsl:template match="result[@module='catalog' and @method='category']/page[@alt-name = 'blog']" mode="catalog">
+    <xsl:template match="result[@module='catalog' and @method='category']/page[@type-id = 140]" mode="catalog">
         <xsl:variable name="id_cat" select="@id"/>
         <div class="wrapper">
             <div class="headline">
@@ -434,34 +437,27 @@
             <div class="breadcrumbs">
                 <xsl:apply-templates select="document('udata://core/navibar/0/1/0/0')/udata"/>
             </div>
-
+            
             <div class="blog">
                 <xsl:apply-templates select="document(concat('udata://catalog/getObjectsList/notemplate/',$id_cat,'/5//1//0'))/udata" mode="blogs"/>
-                <!--div id="cat_{$id_cat}" class="upload"><span class="plus"><xsl:text>+ </xsl:text></span><span class="ult">Показать ещё</span></div-->
-
+                
                 <div class="article">
                     <xsl:value-of select=".//property[@name = 'descr']/value" disable-output-escaping="yes"/>
                 </div>
-
+                
                 <div style="clear: both;"/>
             </div>
             <div class="sidebar">
                 <div class="rubricator">
-                    <!--div class="s_title">Рубрики</div-->
-                    <xsl:apply-templates select="document(concat('udata://catalog/getCategoryList/notemplate/',$id_cat,'///'))/udata/items" mode="blogs_list"/>
+                    <xsl:apply-templates select="document(concat('udata://catalog/getCategoryList/notemplate/',393,'///'))/udata/items" mode="blogs_list"/>
                 </div>
             </div>
-
+            
             <xsl:call-template name="sidebar"/>
-
-
-            <!--script type="text/javascript" src="{$template-resources}js/load_objects.js"/-->
-
         </div>
-
     </xsl:template>
-
-
+    
+    
     <!--  -->
     <xsl:template match="udata" mode="blogs">
         <!--div class="c_title">Найдено объектов: <span>
