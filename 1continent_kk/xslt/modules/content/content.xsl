@@ -877,10 +877,10 @@
         <xsl:param name="komn"/>
         <xsl:variable name="id_room" select="document(concat('upage://', @id,'.kolichestvo_komnat'))/udata/property/value/item/@id"/>
         <xsl:variable name="romms_count" select="document(concat('udata://content/getAppartKK/', $id_room,'/',$raion))/udata/total"/>
-        
+
         <xsl:choose>
             <xsl:when test="string-length($raion) = 0">
-                
+
                 <xsl:choose>
                     <xsl:when test="$document-page-id = @id">
                         <a class="step_link checked" href="{@link}">
@@ -895,11 +895,11 @@
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
-            
+
             </xsl:when>
-            
+
             <xsl:otherwise>
-                
+
                 <xsl:choose>
                     <xsl:when test="$document-page-id = @id">
                         <a class="step_link checked" href="{@link}?raion={$raion}">
@@ -913,10 +913,10 @@
                             </a>
                         </xsl:if>
                     </xsl:otherwise>
-                
+
                 </xsl:choose>
             </xsl:otherwise>
-        
+
         </xsl:choose>
     </xsl:template>
     <!--===========================================================================================================================-->
@@ -1087,49 +1087,49 @@
         </xsl:choose>
         <xsl:apply-templates select="document(concat('udata://system/numpages/',total,'/',10,'/'))/udata" mode="upload"/>
     </xsl:template>
-    
+
     <xsl:template match="item " mode="items_group_k">
-        
+
         <xsl:variable name="id" select="@id"/>
-        
+
         <xsl:variable name="page" select="document(concat('upage://',$id))"/>
-        
+
         <xsl:variable name="group_id" select="$page/udata/page/@parentId"/>
-        
+
         <xsl:variable name="group_page" select="document(concat('upage://',$group_id))"/>
-        
+
         <xsl:variable name="j_k_id" select="$group_page/udata/page/@parentId"/>
-        
+
         <xsl:variable name="j_k_page" select="document(concat('upage://',$j_k_id))"/>
-        
+
         <xsl:variable name="district_id" select="$j_k_page/udata/page/@parentId"/>
-        
+
         <xsl:variable name="district_page" select="document(concat('upage://',$district_id))"/>
-        
+
         <xsl:variable name="title" select="$page//property[@name = 'h1']/value"/>
-        
+
         <xsl:variable name="photo" select="$page//property[@name = 'foto']/value"/>
-        
+
         <xsl:variable name="link" select="$page/udata/page/@link"/>
-        
+
         <xsl:variable name="ipoteca" select="$j_k_page//property[@name = 'ipoteka']/value"/>
-        
+
         <xsl:variable name="kolichestvo_komnat" select="$page//property[@name = 'kolichestvo_komnat']/value/item/@name"/>
-        
+
         <xsl:variable name="S" select="number(translate($page//property[@name = 'obwaya_prowad']/value, ',', '.'))"/>
-        
+
         <xsl:variable name="tarif" select="document(concat('upage://',$group_id,'.stoimost_kvadratnogo_metra'))/udata/property/value"/>
-        
+
         <xsl:variable name="cena" select="$tarif * $S"/>
-        
+
         <xsl:variable name="object_sq" select="$page/udata/page/properties/group[@name = 'parametry']"/>
-        
+
         <div class="object">
             <div class="obj_photo">
                 <xsl:if test="$ipoteca = 1">
                     <div class="cat_ipoteca"/>
                 </xsl:if>
-                
+
                 <a href="{$link}" onclick="yaCounter21668962.reachGoal('select_obj'); return true;">
                     <!--xsl:choose>
                         <xsl:when test="$photo = true()">
@@ -1158,12 +1158,12 @@
                 </h4>
                 <div class="obj_distinct">Район: <a href="{$district_page/udata/page/@link}"><xsl:value-of select="$district_page//property[@name = 'h1']/value"/></a></div>
                 <div class="obj_distinct">Объект: <a href="{$j_k_page/udata/page/@link}"><xsl:value-of select="$j_k_page//property[@name = 'h1']/value"/></a></div>
-                
+
                 <div class="obj_price">
                     <span>Стоимость: <xsl:value-of select="format-number($cena, '### ###', 'european')"/> руб.</span>
                 </div>
                 <!--div class="obj_sub_price">  (<xsl:value-of select="format-number($tarif, '### ###', 'european')"/> руб. за м<sup>2</sup>)  </div-->
-                
+
                 <!--div class="description">
                     <xsl:apply-templates select="$page//group[@name = 'parametry']/property" mode="k_param"/>
                 </div-->
@@ -1196,10 +1196,10 @@
                                 </td>
                             </tr>
                         </table>
-                        
+
                     </div>
                 </div>
-                
+
                 <div class="obj_button">
                     <a href="#summit" class="summit" onclick="yaCounter21668962.reachGoal('summit{$j_k_id}'); return true;">Договориться о встрече в офисе</a>
                 </div>
