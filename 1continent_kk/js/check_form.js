@@ -1,6 +1,7 @@
 $(document).ready(function () {
     
-    $("form.formId144").validate({ //заказ обратного звонка
+    $("form.formId144").validate({
+        //заказ обратного звонка
         rules: {
             'data[new][s_phone]': {
                 required: true
@@ -21,7 +22,7 @@ $(document).ready(function () {
                 data: $('form.formId144').serialize(),
                 url: "/udata://webforms/send/",
                 beforeSend: function () {
-                    $("form.formId144 .submit input").attr("disabled","disabled");
+                    $("form.formId144 .submit input").attr("disabled", "disabled");
                     //disabled=""
                     var phone = $('.formId144 :input[name="data[new][s_phone]"]').val();
                     var mail = $('.formId144 :input[name="data[new][s_mail]"]').val();
@@ -37,7 +38,8 @@ $(document).ready(function () {
         }
     });
     //====================================================================
-    $("form.formId145").validate({ // Задать вопрос специалисту
+    $("form.formId145").validate({
+        // Задать вопрос специалисту
         rules: {
             'data[new][s_phone]': {
                 required: true
@@ -58,7 +60,7 @@ $(document).ready(function () {
                 data: $('form.formId145').serialize(),
                 url: "/udata://webforms/send/",
                 beforeSend: function () {
-                    $("form.formId145 .submit input").attr("disabled","disabled");
+                    $("form.formId145 .submit input").attr("disabled", "disabled");
                     var phone = $('.formId145 :input[name="data[new][s_phone]"]').val();
                     var mail = $('.formId145 :input[name="data[new][s_mail]"]').val();
                     var name = $('.formId145 :input[name="data[new][s_name]"]').val();
@@ -73,7 +75,8 @@ $(document).ready(function () {
         }
     });
     //====================================================================
-    $("form.formId146").validate({ // Договориться о встрече в офисе
+    $("form.formId146").validate({
+        // Договориться о встрече в офисе
         rules: {
             'data[new][s_phone]': {
                 required: true
@@ -94,7 +97,7 @@ $(document).ready(function () {
                 data: $('form.formId146').serialize(),
                 url: "/udata://webforms/send/",
                 beforeSend: function () {
-                    $("form.formId146 .submit input").attr("disabled","disabled");
+                    $("form.formId146 .submit input").attr("disabled", "disabled");
                     var phone = $('.formId146 :input[name="data[new][s_phone]"]').val();
                     var mail = $('.formId146 :input[name="data[new][s_mail]"]').val();
                     var name = $('.formId146 :input[name="data[new][s_name]"]').val();
@@ -130,7 +133,7 @@ $(document).ready(function () {
                 data: $('form.formId_calc').serialize(),
                 url: "/udata://webforms/send/",
                 beforeSend: function () {
-                    $("form.formId132 .submit input").attr("disabled","disabled");
+                    $("form.formId132 .submit input").attr("disabled", "disabled");
                     var phone = $('.formId_calc :input[name="data[new][s_phone]"]').val();
                     var mail = $('.formId_calc :input[name="data[new][s_mail]"]').val();
                     var name = $('.formId_calc :input[name="data[new][s_name]"]').val();
@@ -145,4 +148,24 @@ $(document).ready(function () {
         }
     });
     //====================================================================
+    
+    $(".obj_filter form select, .obj_filter form input").on('change', function () {
+        var val = 0;
+        $(".obj_filter form select, .obj_filter form input").each(function(){
+            if($(this).is(':checked') || $('.obj_filter form select').val() != '' || val == 1) {
+                val = 1;
+            }
+            
+            
+        })
+        
+        if (val = 1) {
+            $(".obj_filter form .submit input").css('background', '#eb6e35');
+        }
+        else {
+            $(".obj_filter form .submit input").css('background', '#cccccc');
+        }
+        
+        
+    })
 });

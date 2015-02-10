@@ -31,16 +31,16 @@
                         <xsl:apply-templates select="document(concat('udata://catalog/search/(', $id_cat ,')'))/udata" mode="filter"/>
                     </xsl:otherwise>
                 </xsl:choose>
-                    
+
             </div>
             <div class="catalog">
                 <xsl:apply-templates select="document(concat('udata://catalog/getObjectsList/notemplate/',$id_cat,'/5//1//1'))/udata" mode="items"/>
                 <!--div id="cat_{$id_cat}" class="upload"><span class="plus"><xsl:text>+ </xsl:text></span><span class="ult">Показать ещё</span></div-->
 
                 <xsl:if test="$p = 0">
-                <div class="article">
-                    <xsl:value-of select=".//property[@name = 'content']/value" disable-output-escaping="yes"/>
-                </div>
+                    <div class="article">
+                        <xsl:value-of select=".//property[@name = 'content']/value" disable-output-escaping="yes"/>
+                    </div>
                 </xsl:if>
                 <div style="clear: both;"/>
             </div>
@@ -96,17 +96,15 @@
     <xsl:template match="udata" mode="items">
         <xsl:choose>
             <xsl:when test="total = 0">
-                <div class="c_title">
-                    На данный момент в выбранном вами районе нет наших объектов. Но Вы можете подобрать недвижимость в другом районе.
-                </div>
+                <div class="c_title"> На данный момент в выбранном вами районе нет наших объектов. Но Вы можете подобрать недвижимость в другом районе. </div>
                 <div class="headline">
-                <xsl:apply-templates select="document(concat('udata://catalog/getCategoryList/notemplate/',550,'/0/0/0'))/udata/items" mode="subcatalog"/>
+                    <!--xsl:apply-templates select="document(concat('udata://catalog/getCategoryList/notemplate/',550,'/0/0/0'))/udata/items" mode="subcatalog"/-->
                 </div>
             </xsl:when>
             <xsl:otherwise>
                 <div class="c_title">Найдено объектов: <span>
-                    <xsl:value-of select="total"/>
-                </span>
+                        <xsl:value-of select="total"/>
+                    </span>
                 </div>
             </xsl:otherwise>
         </xsl:choose>
@@ -221,7 +219,9 @@
                         </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
-
+                <div>
+                    <a class="look_plane" href="{$link}">Посмотреть планировки</a>
+                </div>
 
 
                 <div class="obj_button">
@@ -265,7 +265,9 @@
             </div>
             <div style="position: absolute; display: none;" class="jq-selectbox__dropdown">
                 <ul style="position: relative; list-style: none; overflow: auto; overflow-x: hidden">
-                    <li style="display: block; white-space: nowrap;"><a href="/krasnodar/obekty/novostrojki/">Все жилые комплексы</a></li>
+                    <li style="display: block; white-space: nowrap;">
+                        <a href="/krasnodar/obekty/novostrojki/">Все жилые комплексы</a>
+                    </li>
                     <xsl:apply-templates select="item" mode="subcatalog"/>
                 </ul>
             </div>
@@ -281,8 +283,12 @@
         <!--option value="{@link}">
             <xsl:value-of select="."/>
         </option-->
-        <li style="display: block; white-space: nowrap;"><a href="{@link}"><xsl:value-of select="."/></a></li>
-        
+        <li style="display: block; white-space: nowrap;">
+            <a href="{@link}">
+                <xsl:value-of select="."/>
+            </a>
+        </li>
+
         <!--a href="{@link}"><xsl:value-of select="."/></a-->
     </xsl:template>
 
@@ -295,27 +301,53 @@
                 <xsl:apply-templates select="document('udata://core/navibar/0/1/0/0')/udata"/>
             </div>
             <div class="headline">
-                <h1 id="{@id}"><xsl:value-of select=".//property[@name = 'h1']/value"/></h1>
+                <h1 id="{@id}">
+                    <xsl:value-of select=".//property[@name = 'h1']/value"/>
+                </h1>
             </div>
             <div class="catalog">
                 <table>
                     <tr>
-                        <td><a href="/krasnodar/obekty/novostrojki/" class="obj_category" title="Жилые комплексы"><img src="{$template-resources}images/_jilcompl.jpg" alt="Жилые комплексы"/></a></td>
-                        <td><a href="/krasnodar/obekty/kvartiry/" class="obj_category" title="Квартиры"><img src="{$template-resources}images/_kvartira.jpg" alt="Квартиры"/></a></td>
-                        <td><a href="/krasnodar/obekty/doma/" class="obj_category" title="Коттеджи"><img src="{$template-resources}images/_kotedj.jpg" alt=""/></a></td>
-                        <td><a href="/krasnodar/obekty/kommercheskaya_nedvizhimost/" class="obj_category" title="Коммерческая нежвижимость"><img src="{$template-resources}images/_commercial.jpg" alt="Коммерческая нежвижимость"/></a></td>
+                        <td>
+                            <a href="/krasnodar/obekty/novostrojki/" class="obj_category" title="Жилые комплексы">
+                                <img src="{$template-resources}images/_jilcompl.jpg" alt="Жилые комплексы"/>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/krasnodar/obekty/kvartiry/" class="obj_category" title="Квартиры">
+                                <img src="{$template-resources}images/_kvartira.jpg" alt="Квартиры"/>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/krasnodar/obekty/doma/" class="obj_category" title="Коттеджи">
+                                <img src="{$template-resources}images/_kotedj.jpg" alt=""/>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/krasnodar/obekty/kommercheskaya_nedvizhimost/" class="obj_category" title="Коммерческая нежвижимость">
+                                <img src="{$template-resources}images/_commercial.jpg" alt="Коммерческая нежвижимость"/>
+                            </a>
+                        </td>
                     </tr>
                     <tr>
-                        <td><a href="/krasnodar/obekty/novostrojki/" class="obj_category">Жилые комплексы</a></td>
-                        <td><a href="/krasnodar/obekty/kvartiry/" class="obj_category">Квартиры</a></td>
-                        <td><a href="/krasnodar/obekty/doma/" class="obj_category">Коттеджи</a></td>
-                        <td><a href="/krasnodar/obekty/kommercheskaya_nedvizhimost/" class="obj_category">Коммерческая нежвижимость</a></td>
+                        <td>
+                            <a href="/krasnodar/obekty/novostrojki/" class="obj_category">Жилые комплексы</a>
+                        </td>
+                        <td>
+                            <a href="/krasnodar/obekty/kvartiry/" class="obj_category">Квартиры</a>
+                        </td>
+                        <td>
+                            <a href="/krasnodar/obekty/doma/" class="obj_category">Коттеджи</a>
+                        </td>
+                        <td>
+                            <a href="/krasnodar/obekty/kommercheskaya_nedvizhimost/" class="obj_category">Коммерческая нежвижимость</a>
+                        </td>
                     </tr>
                 </table>
 
                 <xsl:apply-templates select="document(concat('udata://catalog/getObjectsList/notemplate/',$id_cat,'/10/1/2//1'))/udata" mode="items"/>
                 <!--div id="cat_{$id_cat}" class="upload"><span class="plus"><xsl:text>+ </xsl:text></span><span class="ult">Показать ещё</span></div-->
-                
+
                 <xsl:if test="$p = 0">
                     <div class="article">
                         <xsl:value-of select=".//property[@name = 'content']/value" disable-output-escaping="yes"/>
@@ -325,10 +357,10 @@
             </div>
             <xsl:call-template name="sidebar"/>
         </div>
-        
+
     </xsl:template>
-    
-    
+
+
     <!--===========================================================================================================================-->
     <!--===========================================================================================================================-->
     <!-- Вывод SIDEBAR BEGIN -->

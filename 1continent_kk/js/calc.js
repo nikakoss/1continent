@@ -20,7 +20,7 @@ jQuery(document).ready(function(){
         if(calc_cost != 0){
             var summ =  calc_cost - calc_pre + '';
 
-            var pay = summ * 0.01/(1-1.01/Math.pow(1.01, calc_time));
+            var pay = summ * 0.0125/(1-1.0125/Math.pow(1.0125, calc_time));
 
             pay = round(pay, 2)+'';
 

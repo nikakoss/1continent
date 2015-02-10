@@ -166,7 +166,8 @@
 
                         <span class="komissia">0% комиссии</span>
                         <div class="det_obj_button">
-                            <a href="#summit" class="summit">Договориться о встрече в офисе</a>
+                            <!--a href="#summit" class="summit">Договориться о встрече в офисе</a-->
+                            <a href="#summit" class="summit">Купить квартиру</a>
                         </div>
 
                         <div class="det_obj_ipoteca">
@@ -234,7 +235,10 @@
                     <xsl:if test="document(concat('udata://content/menu/0/0/', $id))/udata/items = true()">
                         <div class="box">
                             <!-- Площади -->
-                            <xsl:apply-templates select="document(concat('udata://content/menu/0/0/', $id))/udata/items" mode="ploshadi"/>
+                            <!--xsl:apply-templates select="document(concat('udata://content/menu/0/0/', $id))/udata/items" mode="ploshadi"/-->
+                            <p>С планировками можете ознакомиться в офисе нашей компании.</p>
+                            <p><br /></p>
+                            <a href="#summit" class="summit">Договориться о встрече в офисе</a>
                         </div>
                     </xsl:if>
                     <xsl:if test="$tehnologii = true()">

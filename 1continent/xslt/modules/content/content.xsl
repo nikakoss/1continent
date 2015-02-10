@@ -90,7 +90,7 @@
                     <xsl:value-of select="$global_parameters/property[@name = 'o_nashej_kompanii_na_glavnoj']/value" disable-output-escaping="yes"/>
                 </div>
                 <div class="our_offer">
-                    <span>Наши предложения</span>
+                    <span>Наши квартиры</span>
                     <div id="slider" class="slider">
                         <div class="slider_elements">
                             <xsl:apply-templates select="document(concat('usel://newitems/', 350,'/',3))/udata" mode="slider_room"/>

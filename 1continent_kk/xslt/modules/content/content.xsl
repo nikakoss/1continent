@@ -689,9 +689,11 @@
 
 
                 <xsl:if test="$p = 0">
-                    <div class="article">
-                        <xsl:value-of select=".//property[@name = 'content']/value" disable-output-escaping="yes"/>
-                    </div>
+                    <xsl:if test="string-length($raion) = 0">
+                        <div class="article">
+                            <xsl:value-of select=".//property[@name = 'content']/value" disable-output-escaping="yes"/>
+                        </div>
+                    </xsl:if>
                 </xsl:if>
 
                 <div style="clear: both;"/>
@@ -989,7 +991,6 @@
 
         <xsl:variable name="object_sq" select="$page/udata/page/properties/group[@name = 'parametry']"/>
 
-
         <div class="object">
             <div class="obj_photo">
                 <xsl:if test="$ipoteca = 1">
@@ -997,7 +998,7 @@
                 </xsl:if>
 
                 <a href="{$link}" onclick="yaCounter21668962.reachGoal('select_obj'); return true;">
-                    <xsl:choose>
+                    <!--xsl:choose>
                         <xsl:when test="$photo = true()">
                             <img alt="{$title}" title="{$title}">
                                 <xsl:attribute name="src">
@@ -1008,7 +1009,8 @@
                         <xsl:otherwise>
                             <img alt="{$title}" title="{$title}" src="{$template-resources}img/empty_appart.jpg"> </img>
                         </xsl:otherwise>
-                    </xsl:choose>
+                    </xsl:choose-->
+                    <img alt="{$title}" title="{$title}" src="{$template-resources}img/kvart/{$kolichestvo_komnat}/1.png"> </img>
                 </a>
             </div>
             <div class="obj_info">

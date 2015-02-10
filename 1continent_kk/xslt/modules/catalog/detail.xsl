@@ -600,7 +600,7 @@
                 </xsl:if>
 
                 <a href="{$link}" onclick="yaCounter21668962.reachGoal('select_obj'); return true;">
-                    <xsl:choose>
+                    <!--xsl:choose>
                         <xsl:when test="$photo = true()">
                             <img alt="{$title}" title="{$title}">
                                 <xsl:attribute name="src">
@@ -612,7 +612,8 @@
                             <img alt="{$title}" title="{$title}" src="{$template-resources}img/empty_appart.jpg">
                             </img>
                         </xsl:otherwise>
-                    </xsl:choose>
+                    </xsl:choose-->
+                    <img alt="{$title}" title="{$title}" src="{$template-resources}img/kvart/{$kolichestvo_komnat}/1.png"> </img>
                 </a>
             </div>
             <div class="obj_info">

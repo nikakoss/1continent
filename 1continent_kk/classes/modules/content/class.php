@@ -77,5 +77,6 @@
 
             return self::parseTemplate('', $block_arr);
         }
+        
     };
 ?>
