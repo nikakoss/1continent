@@ -59,7 +59,6 @@
             return def_module::parseTemplate($template_block, $block_arr, 0);
         }
 
-
         public function getAppartList($category = 0, $property = 0) {
             $ip=$_SERVER['REMOTE_ADDR'];
 
@@ -80,35 +79,7 @@
             return def_module::parseTemplate('', $temp);
 
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         public function getSimilarAppart($cena = 0, $kolichestvo_komnat = 351, $limit = 4, $raznica = 200000) {
             $obj_list = new selector('pages');
             $obj_list->types('object-type')->id(128);
@@ -186,5 +157,151 @@
             return self::parseTemplate('', $block_arr);
         }
 
+        public function getAppartTag($kolichestvo_komnat = 351, $raion = FALSE, $limit = 10, $ignore_paging = false) {
+            if($raion == FALSE)
+                $childs = 4;
+            else
+                $childs = 3;
+
+            $curr_page = getRequest('p');
+            if($ignore_paging) $curr_page = 0;
+            $start_point = $curr_page * $limit;
+            $end_point =  $start_point + $limit;
+
+            $obj_list = new selector('pages');
+            $obj_list->types('object-type')->id(128);
+            $obj_list->where('hierarchy')->page($raion)->childs($childs);
+            if($kolichestvo_komnat != "all")
+                $obj_list->where('kolichestvo_komnat')->equals($kolichestvo_komnat);
+            $obj_list->order('rand');
+
+
+            $query = $obj_list->query();
+            $total= $obj_list->length();
+
+            //var_dump($start_point, $end_point);
+            //var_dump($obj_list);
+
+            $i=0;
+            $ii=0;
+            $arr = array();
+            $lines = array();
+            foreach ($obj_list as $object){
+                $object_id = $object->id;
+                $element = umiHierarchy::getInstance()->getElement($object_id);
+
+                $hierarchy = umiHierarchy::getInstance();
+                $par_id = $hierarchy->getParent($object_id);
+                $par_par_id = $hierarchy->getParent($par_id);
+
+                $par_element = umiHierarchy::getInstance()->getElement($par_par_id);
+                $is_active = $par_element->getIsActive();
+
+                if($is_active == 1) {
+                    $i++;
+                    if($i <= $end_point && $i > $start_point) {
+                        $ii++;
+                        $line_arr = Array();
+                        $line_arr['attribute:id'] = $object_id;
+                        $line_arr['attribute:parentId'] = $par_id;
+                        $line_arr['attribute:link'] = umiHierarchy::getInstance()->getPathById($object_id);
+                        $line_arr['attribute:alt_name'] = $element->getAltName();
+                        $line_arr['xlink:href'] = "upage://" . $object_id;
+                        $line_arr['node:text'] = $element->getName();
+                        $line_arr['attribute:stoimost'] = $stoimost;
+                        $lines[] = self::parseTemplate('', $line_arr, $object_id);
+                        //                    if($i == $limit)
+                        //                        break;
+                    }
+                }
+
+            }
+
+            $block_arr['subnodes:page'] = $lines;
+            $block_arr['numpages'] = umiPagenum::generateNumPage($total, $per_page);
+            $block_arr['obj_count'] = $ii;
+            $block_arr['total'] = $i;
+            $block_arr['query'] = $query;
+            $block_arr['per_page'] = $per_page;
+
+            return self::parseTemplate('', $block_arr);
+
+
+        }
+        
+        
+        public function getAppartKK($kolichestvo_komnat = 351, $raion = FALSE, $limit = 10, $ignore_paging = false) {
+            if($raion == FALSE)
+                $childs = 4;
+            else
+                $childs = 3;
+
+            $curr_page = getRequest('p');
+            if($ignore_paging) $curr_page = 0;
+            
+            $start_point = $curr_page * $limit;
+            $end_point =  $start_point + $limit;
+
+            $obj_list = new selector('pages');
+            $obj_list->types('object-type')->id(128);
+            $obj_list->where('hierarchy')->page('/krasnodar/obekty/novostrojki/'. $raion)->childs($childs);
+            if($kolichestvo_komnat != "all")
+                $obj_list->where('kolichestvo_komnat')->equals($kolichestvo_komnat);
+            $obj_list->order('id')->desc();
+
+
+            $query = $obj_list->query();
+            $total= $obj_list->length();
+
+            //var_dump($start_point, $end_point);
+            //var_dump($obj_list);
+
+            $i=0;
+            $ii=0;
+            $arr = array();
+            $lines = array();
+            foreach ($obj_list as $object){
+                $object_id = $object->id;
+                $element = umiHierarchy::getInstance()->getElement($object_id);
+
+                $hierarchy = umiHierarchy::getInstance();
+                $par_id = $hierarchy->getParent($object_id);
+                $par_par_id = $hierarchy->getParent($par_id);
+
+                $par_element = umiHierarchy::getInstance()->getElement($par_par_id);
+                $is_active = $par_element->getIsActive();
+
+                if($is_active == 1) {
+                    $i++;
+                    if($i <= $end_point && $i > $start_point) {
+                        $ii++;
+                        $line_arr = Array();
+                        $line_arr['attribute:id'] = $object_id;
+                        $line_arr['attribute:link'] = umiHierarchy::getInstance()->getPathById($object_id);
+                        $line_arr['attribute:alt_name'] = $element->getAltName();
+                        $line_arr['xlink:href'] = "upage://" . $object_id;
+                        $line_arr['node:text'] = $element->getName();
+                        $line_arr['attribute:stoimost'] = $stoimost;
+                        $lines[] = self::parseTemplate('', $line_arr, $object_id);
+                        //                    if($i == $limit)
+                        //                        break;
+                    }
+                }
+
+            }
+
+            $block_arr['subnodes:page'] = $lines;
+            $block_arr['numpages'] = umiPagenum::generateNumPage($total, $per_page);
+            $block_arr['obj_count'] = $ii;
+            $block_arr['total'] = $i;
+            $block_arr['query'] = $query;
+            $block_arr['per_page'] = $per_page;
+
+            return self::parseTemplate('', $block_arr);
+
+
+        }
+        
+        
     };
 ?>

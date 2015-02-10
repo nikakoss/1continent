@@ -1,6 +1,6 @@
 <?php
         $permissions = Array(
                 'content' => 
-                                Array('getSimilarAppart')
+                                Array('getSimilarAppart', 'getAppartKK')
         );
 ?>

@@ -93,17 +93,20 @@
                     <span>Наши квартиры</span>
                     <div id="slider" class="slider">
                         <div class="slider_elements">
-                            <xsl:apply-templates select="document(concat('usel://newitems/', 350,'/',3))/udata" mode="slider_room"/>
+                            <!--xsl:apply-templates select="document(concat('usel://newitems/', 350,'/',3))/udata" mode="slider_room"/-->
+                            <xsl:apply-templates select="document('udata://content/getAppartTag/350/3/6')/udata/page/item" mode="slider_room"/>
                         </div>
                     </div>
                     <div id="slider" class="slider">
                         <div class="slider_elements">
-                            <xsl:apply-templates select="document(concat('usel://newitems/', 351,'/',3))/udata" mode="slider_room"/>
+                            <!--xsl:apply-templates select="document(concat('usel://newitems/', 351,'/',3))/udata" mode="slider_room"/-->
+                            <xsl:apply-templates select="document('udata://content/getAppartTag/351/3/6')/udata/page/item" mode="slider_room"/>
                         </div>
                     </div>
                     <div id="slider" class="slider">
                         <div class="slider_elements">
-                            <xsl:apply-templates select="document(concat('usel://newitems/', 352,'/',3))/udata" mode="slider_room"/>
+                            <!--xsl:apply-templates select="document(concat('usel://newitems/', 352,'/',3))/udata" mode="slider_room"/-->
+                            <xsl:apply-templates select="document('udata://content/getAppartTag/352/3/6')/udata/page/item" mode="slider_room"/>
                         </div>
                     </div>
 
@@ -641,7 +644,7 @@
     </xsl:template>
 
     <!-- Вывод СПЕЦПРЕДЛОЖЕНИЯ слева BEGIN -->
-    <xsl:template match="page" mode="slider_room">
+    <xsl:template match="page|item" mode="slider_room">
 
         <xsl:variable name="parentId" select="@parentId"/>
         <xsl:variable name="parent_parentId" select="document(concat('upage://',$parentId))/udata/page/@parentId"/>
