@@ -145,8 +145,8 @@
                 </h3>
             </div>
             <xsl:call-template name="firstWords">
-                <xsl:with-param name="value" select="$desc"/>
-                <xsl:with-param name="count" select="15"/>
+                <xsl:with-param name="value" select="$news_anons"/>
+                <xsl:with-param name="count" select="30"/>
             </xsl:call-template>
         </div>
 

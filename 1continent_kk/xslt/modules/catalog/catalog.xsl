@@ -283,11 +283,15 @@
         <!--option value="{@link}">
             <xsl:value-of select="."/>
         </option-->
-        <li style="display: block; white-space: nowrap;">
-            <a href="{@link}">
-                <xsl:value-of select="."/>
-            </a>
-        </li>
+        <xsl:variable name="count" select="document(concat('udata://catalog/getObjectsList/notemplate/',@id,'/5//1//1'))/udata/total"/>
+        
+        <xsl:if test="$count &gt; 0">
+            <li style="display: block; white-space: nowrap;">
+                <a href="{@link}">
+                    <xsl:value-of select="."/>
+                </a>
+            </li>
+        </xsl:if>
 
         <!--a href="{@link}"><xsl:value-of select="."/></a-->
     </xsl:template>
