@@ -322,7 +322,7 @@
                                 <img src="{$template-resources}images/_kvartira.jpg" alt="Квартиры"/>
                             </a>
                         </td>
-                        <td>
+                        <!--td>
                             <a href="/krasnodar/obekty/doma/" class="obj_category" title="Коттеджи">
                                 <img src="{$template-resources}images/_kotedj.jpg" alt=""/>
                             </a>
@@ -331,7 +331,7 @@
                             <a href="/krasnodar/obekty/kommercheskaya_nedvizhimost/" class="obj_category" title="Коммерческая нежвижимость">
                                 <img src="{$template-resources}images/_commercial.jpg" alt="Коммерческая нежвижимость"/>
                             </a>
-                        </td>
+                        </td-->
                     </tr>
                     <tr>
                         <td>
@@ -340,12 +340,12 @@
                         <td>
                             <a href="/krasnodar/obekty/kvartiry/" class="obj_category">Квартиры</a>
                         </td>
-                        <td>
+                        <!--td>
                             <a href="/krasnodar/obekty/doma/" class="obj_category">Коттеджи</a>
                         </td>
                         <td>
                             <a href="/krasnodar/obekty/kommercheskaya_nedvizhimost/" class="obj_category">Коммерческая нежвижимость</a>
-                        </td>
+                        </td-->
                     </tr>
                 </table>
 
@@ -489,6 +489,101 @@
         <!-- item END -->
 
     </xsl:template>
+
+
+    <xsl:template match="page|item" mode="sidebar_hot2">
+        
+        <xsl:variable name="title" select="document(concat('upage://',@id))//property[@name = 'h1']/value"/>
+        <xsl:variable name="ipoteca" select="document(concat('upage://',@id))//property[@name = 'ipoteka']/value"/>
+        <xsl:variable name="price" select="document(concat('upage://',@id))//property[@name = 'cena']/value"/>
+        <xsl:variable name="price_km" select="document(concat('upage://',@id))//property[@name = 'cena_km']/value"/>
+        <xsl:variable name="photo" select="document(concat('upage://',@id))//property[@name = 'foto']/value"/>
+        <xsl:variable name="raion" select="document(concat('upage://',@id))//property[@name = 'rajon_k']/value/item/@name"/>
+        <xsl:variable name="link" select="document(concat('upage://',@id))/udata/page/@link"/>
+        
+        
+        
+        
+        
+        <!-- item BEGIN -->
+        
+        <div>
+            <div class="s_obj">
+                <div class="top-ribbon-red"></div>
+                <a href="{$link}">
+                    <img alt="{$title}" title="{$title}" class="photo">
+                        <xsl:attribute name="src">
+                            <xsl:value-of select="document(concat('udata://system/makeThumbnailFull/(.', $photo, ')/230/135/default/0/1/5/80'))//src"/>
+                        </xsl:attribute>
+                    </img>
+                </a>
+                <!--div class="s_obj_n">Объект № <xsl:value-of select="@id"/></div-->
+                <div class="s_obj_title">
+                    <a href="{$link}" title="{$title}">
+                        <xsl:value-of select="$title"/>
+                    </a>
+                </div>
+                <div class="s_obj_place">
+                    <span>Район: </span>
+                    <xsl:value-of select="$raion"/>
+                </div>
+                <xsl:choose>
+                    <xsl:when test="document(concat('upage://',@id))//property[@name = 'tip_realizacii'] = true()">
+                        <xsl:choose>
+                            <xsl:when test="document(concat('upage://',@id))//property[@name = 'tip_realizacii']/value/item/@id  = 401">
+                                <div class="s_obj_cost">
+                                    <span>Стоимость аренды: </span>
+                                    <xsl:value-of select="format-number($price, '### ###', 'european')"/> руб. за м<sup>2</sup>
+                                </div>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:choose>
+                                    <xsl:when test="$price != 0">
+                                        <div class="s_obj_cost">
+                                            <span>Стоимость: </span>
+                                            <xsl:value-of select="format-number($price, '### ###', 'european')"/> р. <xsl:if test="$price_km = true()">
+                                                <span class="s_obj_sub_price"> (<xsl:value-of select="format-number($price_km, '### ###', 'european')"/> руб. за м<sup>2</sup>) </span>
+                                            </xsl:if>
+                                        </div>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <div class="s_obj_cost">
+                                            <span>Цена: </span>
+                                            <xsl:value-of select="format-number($price_km, '### ###', 'european')"/> руб. за м<sup>2</sup>
+                                        </div>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:choose>
+                            <xsl:when test="$price != 0">
+                                <div class="s_obj_cost">
+                                    <span>Стоимость: </span>
+                                    <xsl:value-of select="format-number($price, '### ###', 'european')"/> р. <xsl:if test="$price_km = true()">
+                                        <span class="s_obj_sub_price"> (<xsl:value-of select="format-number($price_km, '### ###', 'european')"/> руб. за м<sup>2</sup>) </span>
+                                    </xsl:if>
+                                </div>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <div class="s_obj_cost">
+                                    <span>Цена: </span>
+                                    <xsl:value-of select="format-number($price_km, '### ###', 'european')"/> руб. за м<sup>2</sup>
+                                </div>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+                
+            </div>
+        </div>
+        
+        
+        <!-- item END -->
+        
+    </xsl:template>
+    
     <!-- Вывод СПЕЦПРЕДЛОЖЕНИЯ слева END -->
     <!--===========================================================================================================================-->
     <!-- Вывод Сотрудники BEGIN -->

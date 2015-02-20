@@ -249,3 +249,11 @@
 .look_plane {
   color: #009cff;
 }
+.top-ribbon-red {
+  background: url("../img/red.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+  height: 139px;
+  margin: 13px 0 0 -4px !important;
+  position: absolute;
+  top: 0;
+  width: 137px !important;
+}

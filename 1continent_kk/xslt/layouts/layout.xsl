@@ -347,9 +347,9 @@
                                 </a>
                             </li>
                             <li>
-                                <span title="Объекты" href="">
+                                <a title="Объекты" href="/obekty/">
                                     <span>Объекты</span>
-                                </span>
+                                </a>
                                 <ul>
                                     <li>
                                         <a title="Жилые комплексы" href="/krasnodar/obekty/novostrojki/">
@@ -361,7 +361,7 @@
                                             <span>Квартиры</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <!--li>
                                         <a title="Коттеджи" href="/krasnodar/obekty/doma/">
                                             <span>Коттеджи</span>
                                         </a>
@@ -370,7 +370,7 @@
                                         <a title="Коммерческая недвижимость" href="/krasnodar/obekty/kommercheskaya_nedvizhimost/">
                                             <span>Коммерческая недвижимость</span>
                                         </a>
-                                    </li>
+                                    </li-->
                                 </ul>
 
                             </li>
@@ -444,7 +444,7 @@
                                         <span>Квартиры</span>
                                     </a>
                                 </li>
-                                <li>
+                                <!--li>
                                     <a title="Коттеджи" href="/krasnodar/obekty/doma/">
                                         <span>Коттеджи</span>
                                     </a>
@@ -453,7 +453,7 @@
                                     <a title="Коммерческая недвижимость" href="/krasnodar/obekty/kommercheskaya_nedvizhimost/">
                                         <span>Коммерческая недвижимость</span>
                                     </a>
-                                </li>
+                                </li-->
 
                                 <li>
                                     <a title="О компании" href="/o_kompanii/">
@@ -719,7 +719,24 @@
                         animationTime       : 1600,
                         }
                         )
-                        })                                        
+
+$('.slider_elements2').anythingSlider(
+{
+resizeContents      : false,
+showMultiple        : 3,
+buildNavigation     : false,
+buildStartStop      : false,
+autoPlay            : false,
+autoPlayLocked      : false,
+hashTags            : false,
+infiniteSlides      : true,
+delay               : 7000,
+animationTime       : 1600,
+changeBy : 3
+}
+)
+
+})                                        
                     </script>
                     <script type="text/javascript">
                         (function($) {  

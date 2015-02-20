@@ -51,11 +51,11 @@
         <!-- .wrapper -->
         <div class="special">
             <div class="wrapper">
-                <div class="special_title">Спецпредложения</div>
+                <div class="special_title"><!-- Спецпредложения --></div>
 
                 <div id="slider" class="slider">
-                    <div class="slider_elements">
-                        <xsl:apply-templates select="document('usel://to_slider_k/?limit=10')/udata/page" mode="sidebar_hot"/>
+                    <div class="slider_elements2">
+                        <xsl:apply-templates select="document('usel://to_slider_k/?limit=10')/udata/page" mode="sidebar_hot2"/>
 
                     </div>
                 </div>
